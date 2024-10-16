@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/tela_login.css' %}" />
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="imagem">
+            <img src="{% static 'img/time-drone.svg' %}" alt="Logo">
+        </div>
+        <div class="form">
+            <form id="login-form" action="{% url 'principal' %}" method="POST">
+                {% csrf_token %} 
+                <div class="form-header">
+                    <h1>Login</h1>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="inputEmail4">Email</label>
+                        <input id="inputEmail4" type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="inputPassword4">Senha</label>
+                        <input id="inputPassword4" type="password" name="senha" placeholder="Senha" required>
+                    </div>
+                </div>
+                <div class="continue-button">
+                    <button type="submit">Entrar</button>
+                </div>
+                <div class="button-group">
+                    <p><a href="{% url 'cadastro' %}" class="link-clara">Criar Conta</a></p>
+                    <p><a href="{% url 'email' %}" class="link-clara">Esqueceu a senha?</a></p>
+                </div>
+                <div id="message-container" class="flash_alerta" style="color: red; margin-top: 8px;"></div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCDt3C8vJSaPByyuK_Ic0g_weklhLPIgrU",
+            authDomain: "reconview-1410a.firebaseapp.com",
+            databaseURL: "https://reconview-1410a-default-rtdb.firebaseio.com",
+            projectId: "reconview-1410a",
+            storageBucket: "reconview-1410a.appspot.com",
+            messagingSenderId: "659583199869",
+            appId: "1:659583199869:web:32d1ce0d44e7b94c879f14",
+            measurementId: "G-PBF18382KL"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('inputEmail4').value;
+            const senha = document.getElementById('inputPassword4').value;
+
+            const encryptedPassword = CryptoJS.SHA256(senha).toString();
+
+            try {
+                const usersRef = ref(database, 'usuarios');
+                const snapshot = await get(usersRef);
+                let loginSuccessful = false;
+
+                if (snapshot.exists()) {
+                    snapshot.forEach(childSnapshot => {
+                        const userData = childSnapshot.val();
+                        if (userData.email === email && userData.senha === encryptedPassword) {
+                            loginSuccessful = true;
+
+                            // Salvar os dados do usuário no sessionStorage
+                            sessionStorage.setItem('userEmail', email);  
+                            sessionStorage.setItem('userNome', userData.nome);  
+                            sessionStorage.setItem('userSobrenome', userData.sobrenome);  
+                            sessionStorage.setItem('userCelular', userData.celular);  
+                            sessionStorage.setItem('userID', childSnapshot.key); // Armazenando a chave como ID do usuário
+                        }
+                    });
+                }
+
+                const messageContainer = document.getElementById('message-container');
+                if (loginSuccessful) {
+                    window.location.href = "{% url 'principal' %}";
+                } else {
+                    messageContainer.innerHTML = '<p>Email ou senha inválidos.</p>';
+                }
+            } catch (error) {
+                console.error('Erro ao fazer login:', error.message);
+                document.getElementById('message-container').innerHTML = '<p>Erro ao fazer login. Tente novamente.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

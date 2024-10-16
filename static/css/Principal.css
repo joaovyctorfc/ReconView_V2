@@ -1,0 +1,92 @@
+/* Adicione o estilo das cores aqui */
+body {
+    background-color: #E8EAED;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Garante que a altura do body ocupe toda a viewport */
+    margin: 0; /* Remove as margens padrão */
+}
+
+/* Centralizar o texto "Login" e abaixar */
+h1 {
+    color: black;
+}
+
+/* Alterar a cor do link para uma tonalidade mais clara */
+a {
+    color: #4d7dab; /* Cor mais clara do que o azul padrão */
+    font-size: 14px;
+}
+
+/* Ou, se desejar aplicar a uma classe específica */
+.link-clara {
+    color: #a0bad3; /* Cor mais clara para links com a classe "link-clara" */
+    position: relative;
+    top: 10px;
+}
+
+/* Ajustar a posição da div .form_frente sem afetar o "Login" */
+.form-control {
+    width: 40%;
+    font-size: 14px;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 50%;
+}
+
+.center-input {
+    display: flex;
+    justify-content: center;
+}
+
+.form_frente {
+    text-align: center;
+    padding: 20px; /* Ajuste o preenchimento conforme necessário */
+    box-shadow: 0 0 10px rgba(2, 0, 0, 0.2);
+    color: black;
+    background-color: #FAFAFA;
+    border: none;
+    height: 400px;
+    width: 30%; /* Ajuste a largura desejada */
+    border-radius: 18px;
+}
+
+/* Centralizar o cabeçalho de login */
+.login-header {
+    text-align: center;
+    color: black;
+    margin-top: 20px; /* Ajuste conforme necessário */
+}
+
+.custom-width {
+    width: 50vw; /* Ajuste a largura conforme necessário com unidade vw (viewport width) */
+    margin-left: 50%; /* Move metade para a esquerda para centralizar */
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+}
+
+.btn-primary {
+    background-color: #0A73C2;
+    color: #fff;
+    border: 2px solid #6289b4;
+}
+
+.btn-primary:hover {
+    background-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* Mensagens de sucesso em verde */
+.flash_sucesso {
+    color: green;
+}
+
+/* Mensagens de erro em vermelho */
+.flash_erro {
+    color: red;
+}
