@@ -1,0 +1,237 @@
+/* Adicione o estilo das cores aqui */
+body {
+    background-color: #FAFAFA;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+}
+
+header {
+    background-color: #FAFAFA;
+    padding: 10px 4%;
+    position: sticky;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header .interface {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1250px;
+    margin: 0 auto;
+    width: 100%; /* Certifica que a largura seja 100% do contêiner pai */
+}
+
+header a {
+    color: #7d7d7d;
+    text-decoration: none;
+    display: inline-block;
+    transition: .2s;
+    font-size: 22px;
+}
+
+header a:hover {
+    color: black;
+    transform: scale(1.05);
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-block;
+    padding: 0 40px;
+}
+
+#content {
+    width: 100%; /* Certifica-se de que o conteúdo ocupa toda a largura disponível */
+    max-width: 1200px; /* Define um limite máximo para a largura do conteúdo */
+    margin-top: 20px; /* Aumento do espaçamento superior */
+    display: flex;
+    align-items: center; /* Centraliza os itens verticalmente */
+    justify-content: space-between; /* Distribui os itens com espaço igual entre eles */
+    min-height: 80vh;
+    background: linear-gradient(#FAFAFA, #FAFAFA);
+    padding: 0 20px; /* Adiciona um padding para garantir que o conteúdo não fique colado nas bordas */
+    box-sizing: border-box; /* Inclui padding e border no tamanho total do elemento */
+}
+
+#container {
+    background-color: #FAFAFA;
+    padding: 16px; /* Aumento do preenchimento */
+    width: 95%; /* Aumento da largura */
+    max-width: 450px; /* Ajuste da largura máxima */
+    margin: 0 auto; /* Centralizando o contêiner na página */
+}
+
+/* Alterar a cor do link para uma tonalidade mais clara */
+/* Ou, se desejar aplicar a uma classe específica */
+.link-clara {
+    color: #a0bad3; /* Cor mais clara para links com a classe "link-clara" */
+    position: relative;
+    top: 10px;
+}
+
+#search {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Aumento do espaçamento entre os elementos */
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 14px; /* Aumento do preenchimento */
+    color: black;
+}
+
+#search input {
+    border: none;
+    background-color: transparent;
+    font-size: 18px; /* Aumento do tamanho da fonte */
+    width: 100%;
+    color: black;
+}
+
+#search input:focus-visible {
+    outline: none;
+    color: black;
+}
+
+#search button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black;
+}
+
+#weather {
+    display: none;
+    margin-top: 20px; /* Aumento do espaçamento superior */
+    background-color: #FAFAFA;
+}
+
+#weather.show {
+    display: block;
+    background-color: #FAFAFA;
+}
+
+#weather #title {
+    text-align: center;
+    margin-bottom: 12px; /* Aumento do espaçamento inferior */
+    font-weight: 600;
+    color: black;
+    font-size: 20px; /* Aumento do tamanho da fonte */
+}
+
+#temp {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 12px; /* Aumento do espaçamento entre os elementos */
+    background: linear-gradient(90deg, #FAFAFA, #FAFAFA);
+    color: black;
+    padding: 25px; /* Aumento do preenchimento */
+    background-color: #FAFAFA;
+}
+
+#temp_img {
+    padding: 18px;
+    background-color: #FAFAFA;
+}
+
+#temp_value {
+    font-weight: bold;
+    font-size: 24px; /* Aumento do tamanho da fonte */
+    line-height: 28px; /* Ajuste da altura da linha */
+}
+
+#temp_description {
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 18px; /* Aumento do tamanho da fonte */
+}
+
+#other_infos {
+    margin-top: 20px; /* Aumento do espaçamento superior */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px; /* Aumento do espaçamento entre os elementos */
+    background-color: #FAFAFA;
+}
+
+#other_infos .info {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 12px; /* Aumento do preenchimento */
+    background-color: #FAFAFA;
+    color: black;
+    gap: 10px; /* Aumento do espaçamento entre os elementos */
+}
+
+#other_infos .info h2 {
+    font-size: 16px; /* Aumento do tamanho da fonte */
+    font-weight: 600;
+    color: black;
+}
+
+#other_infos .info i {
+    text-align: center;
+    font-size: 22px; /* Aumento do tamanho da fonte */
+    width: 20%;
+}
+
+#temp_max_icon {
+    color: #7f1d1d;
+}
+
+#temp_min_icon {
+    color: #0284c7;
+}
+
+#humidity_icon {
+    color: #0ea5e9;
+}
+
+#wind_icon {
+    color: #7c3aed;
+}
+
+.btn-contato button {
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #2093FF;
+    color: white;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-contato button:hover {
+    box-shadow: 0px 0px 8px #d6dde2;
+    transform: scale(1.05);
+}
+
+.sair {
+    background-color: gray !important;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sair:hover {
+    background-color: red !important; /* Altera a cor para vermelho quando passa o mouse */
+}
