@@ -1,3 +1,4 @@
-.firebase.json
+#.\venv\Scripts\activate       #ativar ambiente windows
 
-.DS_Store
+venv/
+
