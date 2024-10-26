@@ -299,7 +299,7 @@
         }
         
         const generateQuestion = () => {
-            const question = 'Escolha uma opção:\n1. Esqueci a senha\n2. Opção 2\n3. Opção 3';
+            const question = 'Escolha uma opção:\n1. Esqueci a senha.\n2.   Formatos de vídeo  aceitos no site.\n3. Como saber se o meu vídeo foi carregado com sucesso.\n4. Como posso alterar minhas informações pessoais.';
             return question;
         };
         
@@ -308,13 +308,16 @@
         
             switch (userMessage) {
                 case '1':
-                    responseMessage = 'Va para a pagina esqueceu a senha \n';
+                    responseMessage = 'Retorne a tela login e em seguida clique no link "Esqueceu a senha?". \n';
                     break;
                 case '2':
-                    responseMessage = 'Resposta à opção 2 \,';
+                    responseMessage = 'São aceitos .mp4, .webm, .avi ou .flv \.';
                     break;
                 case '3':
-                    responseMessage = 'Resposta à opção 3 \n';
+                    responseMessage = 'Se o vídeo foi carregado com sucesso clique no item do menu"Biblioteca", assim se for feito com sucesso, ele aparecerá nessa página. \n';
+                    break;
+                case '4':
+                    responseMessage = 'Caso deseje alterar suas informações pessoais, clique no item de menu "Perfil". \n';
                     break;
                 default:
                     responseMessage = 'Não entendi. Por favor, escolha uma das opções disponíveis. \n';
@@ -328,11 +331,11 @@
             const userMessage = chatInput.value.trim();
             if (!userMessage) return;
         
-            if (!userMessage.startsWith('1') && !userMessage.startsWith('2') && !userMessage.startsWith('3')) {
+            if (!userMessage.startsWith('1') && !userMessage.startsWith('2') && !userMessage.startsWith('3') && !userMessage.startsWith('4')) {
                 chatbox.appendChild(createChatLi(userMessage, "outgoing"));
                 chatbox.scrollTo(0, chatbox.scrollHeight);
                 setTimeout(() => {
-                    chatbox.appendChild(createChatLi('Por favor, escolha uma opção válida. \n', "incoming"));
+                    chatbox.appendChild(createChatLi('Não entendi. Por favor, escolha uma das opções disponíveis.  \n', "incoming"));
                     chatbox.scrollTo(0, chatbox.scrollHeight);
                     chatbox.appendChild(createChatLi(generateQuestion(), "incoming"));
                     chatbox.scrollTo(0, chatbox.scrollHeight);
