@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{%static 'css/tela_principal.css'%}" />
     <title>Home</title>
 
-
+    
 
     <script >
         document.addEventListener('DOMContentLoaded', function() {
@@ -30,7 +30,7 @@
                 const userEmailElement = document.createElement('p');
                 document.querySelector('header .interface').appendChild(userEmailElement);
             }
-        });
+        
         let btnMenu = document.getElementById('btn-menu')
         let menu = document.getElementById('menu-mobile')
         let overlay = document.getElementById('overlay-menu')
@@ -46,7 +46,7 @@
         overlay.addEventListener('click',() => {
             menu.classList.remove('abrir-menu')
         })
-    
+    });
     
     </script>
 </head>
@@ -63,17 +63,21 @@
  
             <div class="logo">
                 <a href="#">
-                    <img src="{% static 'img/logo.png' %}" alt="Logo" width="100px">
+                    <img src="{% static 'img/logo.png' %}"  alt="Logo" width="100px">
                 </a>
+            </div>
+
+            <div class="btn-abrir-menu" id="btn-menu">
+                <i class="bi bi-list"></i>
             </div>
 
             <nav class="menu-desktop">
                 <ul>
-                    <li><a href="{% url 'principal' %}">Início</a></li>
-                    <li><a href="{% url 'clima' %}">Clima</a></li>
-                    <li><a href="{% url 'uploadIA' %}">Análise de Vídeo</a></li>
-                    <li><a href="{% url 'video' %}">Biblioteca</a></li>
-                    <li><a href="{% url 'perfil' %}">Perfil</a></li>
+                    <li><a href="/home">Início</a></li>
+                    <li><a href="/clima">Clima</a></li>
+                    <li><a href="/IA">Análise de Vídeo</a></li>
+                    <li><a href="/Video">Biblioteca</a></li>
+                    <li><a href="/perfil">Perfil</a></li>
                     <li><a href="#" id="scrollObjetivo">Objetivo</a></li>
                 </ul>
             </nav>
@@ -84,9 +88,7 @@
             </a>
             </div>
 
-            <div class="btn-abrir-menu" id="btn-menu">
-                <i class="bi bi-list"></i>
-            </div>
+            
             
             <div class="menu-mobile" id="menu-mobile">
                 <div class="btn-fechar">
@@ -95,10 +97,12 @@
 
                 <nav>
                     <ul>
-                    <li><a href="home/">Início</a></li>
-                    <li><a href="clima/">Clima</a></li>
-                    <li><a href="uploadIA/">Análise de Video</a></li>
-                    <li><a href="perfil/">Perfil</a></li>
+                        <li><a href="/home">Início</a></li>
+                        <li><a href="/clima">Clima</a></li>
+                        <li><a href="/IA">Análise de Vídeo</a></li>
+                        <li><a href="/Video">Biblioteca</a></li>
+                        <li><a href="/perfil">Perfil</a></li>
+                        <li><a href="#" id="scrollObjetivo">Objetivo</a></li>
                     </ul>
                 </nav>
             </div>
@@ -201,7 +205,6 @@
                             <div class="card">
                                 <div class="content">
                                     <h2 class="title">Vanderlei Henrique</h2>
-                                    <img src="{% static 'img/imagens/vanderlei.jpeg' %}" alt="Vanderlei Henrique" class="profile-img">
                                     <a href="https://www.linkedin.com/in/vanderlei-henrique-0612b829a/" target="_blank"><button class="btn-sobre"><i class="bi bi-linkedin"></i></button></a>
                                 </div>
                             </div>
@@ -210,7 +213,6 @@
                             <div class="card">
                                 <div class="content">
                                     <h2 class="title">João Vyctor</h2>
-                                    <img src="{% static 'img/imagens/joֶo.jpeg' %}" alt="João Vyctor" class="profile-img">
                                     <a href="https://www.linkedin.com/in/jo%C3%A3o-vyctor-ferreira/" target="_blank"><button class="btn-sobre"><i class="bi bi-linkedin"></i></button></a>
                                 </div>
                             </div>
@@ -219,7 +221,6 @@
                             <div class="card">
                                 <div class="content">
                                     <h2 class="title">Breno</h2>
-                                    <img src="{% static 'img/imagens/breno.jpeg' %}" alt="Breno" class="profile-img">
                                     <a href="https://www.linkedin.com/in/breno-bastos-62396a246/" target="_blank"><button class="btn-sobre"><i class="bi bi-linkedin"></i></button></a>
                                 </div>
                             </div>
@@ -235,8 +236,8 @@
 
                 <form action="https://api.staticforms.xyz/submit" method="post">
                     <input type="text" name="name" placeholder="Seu nome completo:" autocomplete="off"required>
-                    <input type="text" name="email"  placeholder="Seu e-mail" autocomplete="off" required>
-                    <textarea name="message"  placeholder="Sua Mensagem" autocomplete="off" required></textarea>
+                    <input type="text" name="email"  placeholder="Seu e-mail:" autocomplete="off" required>
+                    <textarea name="message"  placeholder="Sua Mensagem:" autocomplete="off" required></textarea>
                     <div class="btn-enviar"><input type="submit" value="ENVIAR"></div>
                     <input type="hidden" name="accessKey" value="dd92cf8f-c8eb-40f1-bc7b-fda8a65227b1">
                     <input type="hidden" name="redirectTo" value="http://127.0.0.1:8000/home/"> <!-- Optional -->
