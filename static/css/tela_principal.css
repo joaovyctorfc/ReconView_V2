@@ -489,17 +489,17 @@ section.sobre {
   }
   
   .sobre .card-border:nth-child(1) .card {
-    background-image: url("{% static 'img/imagens/vanderlei.jpeg' %}");
-}
-
-.sobre .card-border:nth-child(2) .card {
-    background-image: url("{% static 'img/imagens/joao.jpeg' %}");
-}
-
-.sobre .card-border:nth-child(3) .card {
-    background-image: url("{% static 'img/imagens/breno.jpeg' %}");
-}
-
+    background-image: url("{% static 'img/imagens/vanderlei.jpeg'%}");
+  }
+  
+  .sobre .card-border:nth-child(2) .card {
+    background-image: url("{% static 'img/imagens/joao.jpeg'%}");
+  }
+  
+  .sobre .card-border:nth-child(3) .card {
+    background-image: url("{% static 'img/imagens/breno.jpeg'%}");
+  }
+  
   .sobre .card-border:nth-child(1):before {
     border-left: 6px solid #241f57;
     border-right: 6px solid #241f57;
@@ -652,7 +652,7 @@ section.sobre {
 
 /* estilo formulário */
 section.formulario {
-    padding: 80px, 4%;
+    padding: 80px 4%;
 }
 
 form {
@@ -701,26 +701,6 @@ form .btn-enviar input {
     transition: 2s;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* estilo do rodapé */
 
 footer .flex {
@@ -753,7 +733,16 @@ footer .line-footer p a {
 
 /*  responsivo  */
 
-@media screen and (max-width: 767px) {
+
+
+@media screen and (max-width: 1020px) {
+
+    .sair {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
     .sobre .container {
         flex-direction: column;
         align-items: flex-start; /* Alinha os itens à esquerda */
@@ -763,6 +752,50 @@ footer .line-footer p a {
     .sobre .container .card {
         margin-bottom: 20px; /* Adiciona espaçamento entre os containers */
 
+    }
+
+    .btn-abrir-menu {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+    }
+    
+    .sobre .container .card-border {
+        margin-bottom: 20px;
+    }
+
+    .sobre .container .card-border:last-child {
+        margin-bottom: 0;
+    }
+
+    footer .footer-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    footer .footer-text p {
+        font-size: 12px; 
+    }
+
+    header .interface {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .sobre .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    body.show-chatbot .chatbot {
+        bottom: 100px; /* Ajuste esse valor conforme necessário para garantir que o chatbot não sobreponha o rodapé */
+    }
+
+    body.show-chatbot .rodapé {
+        padding-bottom: 150px; /* Adiciona espaço extra ao rodapé quando o chatbot está ativo */
     }
 }
 

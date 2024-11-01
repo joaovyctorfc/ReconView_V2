@@ -1,4 +1,6 @@
-#.\venv\Scripts\activate       #ativar ambiente windows
 
 venv/
 
+.gitignore
+=======
+#.\venv\Scripts\activate       #ativar ambiente windows
