@@ -708,10 +708,21 @@ footer .flex {
 }
 
 footer .line-footer {
+    display: flex;
+    justify-content: space-between; /* Espaça os itens igualmente */
     padding: 20px 0;
     border-bottom: 2px solid black;
+}
+
+.logo-footer, .footer-text {
+    flex: 1; /* Cada um ocupa 50% do espaço */
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.footer-text {
+    flex-direction: column; /* Coluna para alinhar os emails */
 }
 
 footer .line-footer p {
