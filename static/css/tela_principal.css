@@ -489,15 +489,15 @@ section.sobre {
   }
   
   .sobre .card-border:nth-child(1) .card {
-    background-image: url("{% static 'img/imagens/vanderlei.jpeg'%}");
+    background-image: url("/static/img/imagens/vanderlei.jpeg");
   }
   
   .sobre .card-border:nth-child(2) .card {
-    background-image: url("{% static 'img/imagens/joao.jpeg'%}");
+    background-image: url("/static/img/imagens/joֶo.jpeg");
   }
   
   .sobre .card-border:nth-child(3) .card {
-    background-image: url("{% static 'img/imagens/breno.jpeg'%}");
+    background-image: url("/static/img/imagens/breno.jpeg");
   }
   
   .sobre .card-border:nth-child(1):before {
