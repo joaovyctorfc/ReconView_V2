@@ -50,7 +50,8 @@
         <div class="card">
             <div class="card-body">
                 <h2>Upload de Vídeo</h2>
-                <form id="uploadForm" action="/UploadIA" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+                <form id="uploadForm" action="{% url 'uploadIA' %}" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+                    {% csrf_token %}
                     <input type="file" name="video" accept="video/*" class="custom-file-input">
                     <button type="submit" class="btn btn-primary mt-3">Enviar</button>
                 </form>

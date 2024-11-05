@@ -1,11 +1,20 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.views.generic import TemplateView
-from .firebase import db   
+import os
 import random
 import requests
 import bcrypt
+import cv2
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.views.generic import TemplateView
+from django.views import View
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
 from django.core.mail import send_mail
+from .firebase import db
+from ultralytics import YOLO
+from django.conf import settings
+
+
 firebase_link = 'https://reconview-1410a-default-rtdb.firebaseio.com/' 
 codigos_de_confirmacao = {}
 def encontrar_usuario_por_email(email, link):
@@ -172,3 +181,60 @@ class AtualizarSenha(TemplateView):
             messages.error(request, 'Ocorreu um erro ao atualizar a senha.')
 
         return self.render_to_response({'codigo_enviado': True, 'destinatario': destinatario})  # Renderiza o template após a tentativa de atualização
+
+
+
+# Análise de vídeo
+
+#UPLOAD_FOLDER = 'uploads'
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+class UploadIA(View):
+    template_name = 'upload_video_ia.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        if 'video' not in request.FILES:
+            return redirect(request.url)
+        
+        file = request.FILES['video']
+        if not file:
+            return redirect(request.url)
+
+        fs = FileSystemStorage()
+        filename = fs.save(file.name, file)
+        file_path = os.path.join(settings.MEDIA_ROOT, filename)
+
+        result_video_path = self.analise_video(file_path)
+
+        return render(request, 'analiseVideo.html', {'result_video_path': result_video_path})
+
+    def analise_video(self, video_path):
+        model = YOLO("yolov8n.pt")
+        cap = cv2.VideoCapture(video_path)
+        output_path = os.path.join(settings.MEDIA_ROOT, 'result.mp4')
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+        
+        while cap.isOpened():
+            success, frame = cap.read()
+            if success:
+                results = model(frame)
+                annotated_frame = results[0].plot()
+                out.write(annotated_frame)
+            else:
+                break
+        
+        cap.release()
+        out.release()
+        return output_path
+    
+    
+def download(request):
+    # Implementação da view para download
+    return HttpResponse("Download iniciado")
