@@ -1,11 +1,19 @@
+import os
+import random
+import requests
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic import TemplateView
-from .firebase import db   
-import random
-import requests
-import bcrypt
+from django.views import View
+from django.core.files.storage import FileSystemStorage
+from django.http import FileResponse
+from django.http import HttpResponse
 from django.core.mail import send_mail
+from django.conf import settings
+from ultralytics import YOLO
+from .firebase import db
+import cv2
+
 firebase_link = 'https://reconview-1410a-default-rtdb.firebaseio.com/' 
 codigos_de_confirmacao = {}
 def encontrar_usuario_por_email(email, link):
@@ -172,3 +180,73 @@ class AtualizarSenha(TemplateView):
             messages.error(request, 'Ocorreu um erro ao atualizar a senha.')
 
         return self.render_to_response({'codigo_enviado': True, 'destinatario': destinatario})  # Renderiza o template após a tentativa de atualização
+
+class UploadIA(TemplateView):
+    template_name = 'upload_video_ia.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        # Verifique se um arquivo de vídeo foi enviado
+        if 'video' not in request.FILES:
+            messages.error(request, "Por favor, envie um arquivo de vídeo.")
+            return redirect('uploadIA')
+
+        # Salvar o arquivo enviado
+        file = request.FILES['video']
+        fs = FileSystemStorage()
+        filename = fs.save(file.name, file)
+        file_path = os.path.join(settings.MEDIA_ROOT, filename)
+
+        try:
+            # Processa o vídeo com a análise de IA
+            result_video_path = self.analise_video(file_path)
+            messages.success(request, "Análise de vídeo concluída com sucesso.")
+        except Exception as e:
+            messages.error(request, f"Ocorreu um erro durante a análise do vídeo: {e}")
+            return redirect('uploadIA')
+
+        # Renderiza o template com o caminho do vídeo resultante
+        return render(request, 'analiseVideo.html', {'result_video_path': result_video_path})
+
+    def analise_video(self, video_path):
+        # Carrega o modelo YOLO
+        model = YOLO("yolov8n.pt")
+
+        # Configurações do vídeo de entrada
+        cap = cv2.VideoCapture(video_path)
+        output_path = os.path.join(settings.MEDIA_ROOT, 'result.mp4')
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
+        
+        while cap.isOpened():
+            success, frame = cap.read()
+            if not success:
+                break
+            results = model(frame)
+            annotated_frame = results[0].plot()
+            out.write(annotated_frame)
+
+        # Libera os recursos
+        cap.release()
+        out.release()
+        
+        return output_path
+
+def download(request):
+    result_video_path = request.POST.get('result_video_path')
+    if not result_video_path:
+        messages.error(request, "O vídeo analisado não está disponível para download.")
+        return redirect('uploadIA')
+
+    file_path = os.path.join(settings.MEDIA_ROOT, result_video_path)
+    if os.path.exists(file_path):
+        response = FileResponse(open(file_path, 'rb'), as_attachment=True, filename=os.path.basename(file_path))
+        return response
+    else:
+        messages.error(request, "O arquivo de vídeo não foi encontrado.")
+        return redirect('uploadIA')
