@@ -22,7 +22,7 @@ path('perfil/',Perfil.as_view(),name='perfil'),
 
 path('email/',Email.as_view(),name='email'),
 
-    path('confirmacao/', Email.as_view(), name='confirmacao'),  
+path('confirmacao/', Email.as_view(), name='confirmacao'),  
 
 path('uploadIA/', views.UploadIA.as_view(), name='uploadIA'),
 

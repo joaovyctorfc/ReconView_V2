@@ -16,14 +16,22 @@ body {
     background: #E8EAED;
 }
 
+.flash_sucesso {
+    color: green; /* Cor verde para mensagens de sucesso */
+}
+
+.flash_erro {
+    color: red; /* Cor vermelha para mensagens de erro */
+}
+
 .container {
     width: 90%;
     height: 95vh;
     display: flex;
-    box-shadow: 5px 5px 10px rgba(124, 117, 117, 0.212);
+    box-shadow: 5px 5px 10px rgba(124, 117, 117, 0.212)
 }
 
-.imagem {
+.imagem{
     width: 50%;
     display: flex;
     justify-content: center;
@@ -33,7 +41,7 @@ body {
 }
 
 .imagem img {
-    width: 75%;
+    width: 75rem;
 }
 
 .form {
@@ -46,20 +54,24 @@ body {
     padding: 5rem;
 }
 
-.form-header h1 {
-    margin-bottom: 2rem;
+.form-header {
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: space-between;
 }
 
-#message-container {
-    min-height: 30px; /* Espaço reservado para a mensagem */
-    color: red;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 1rem;
-    visibility: hidden; /* Inicialmente oculto */
+.form-header h1::after{
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #0C8CE9;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
 }
 
-.input-group {
+.input-group{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -67,7 +79,7 @@ body {
 }
 
 .input-box {
-    width: calc(48% - 1rem);
+    width: calc(52% - 1rem); /* Calcula 50% da largura menos o espaço entre os campos */
     display: flex;
     flex-direction: column;
     margin-bottom: 0.8rem;
@@ -89,6 +101,12 @@ body {
     outline: 1px solid #0C8CE9;
 }
 
+.input-boxlabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
 .cadastro-btn {
     color: white;
     width: 30%;
@@ -98,6 +116,7 @@ body {
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out, transform 0.2s;
+    margin-bottom: 0.2rem;
 }
 
 .cadastro-btn:hover {
@@ -105,39 +124,79 @@ body {
     transform: scale(1.05);
 }
 
+.continue-button {
+    display: flex;
+    flex-direction: column; /* Altera a direção do flex para empilhar verticalmente */
+    align-items: center; /* Centraliza os botões na horizontal */
+    margin-top: 2.5rem;
+}
+
+.cadastro-btn a {
+    text-decoration: none;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: white;
+}
+
 .voltar-btn {
-    background-color: transparent;
+    background-color: transparent; /* Remove o fundo */
     color: #0C8CE9;
-    border: none;
+    border: none; /* Remove a borda */
+    width: auto;
     cursor: pointer;
-    margin-top: 1rem;
+    padding: 0.62rem 1.5rem;
+    margin-bottom: 0;
 }
 
 .voltar-btn:hover {
-    text-decoration: underline;
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+.enviar-btn {
+    width: 30%;
+    margin-bottom: 0.2rem;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.enviar-btn:hover {
+    transform: scale(1.05);
+    background-color: #0a73c2;
 }
 
 @media screen and (max-width: 1330px) {
-    .form-image {
+    .imagem {
         display: none;
-    }
-
-    .container {
-        width: 80%;
-    }
-
-    .form {
-        width: 100%;
     }
 }
 
 @media screen and (max-width: 1064px) {
     .container {
-        width: 50%;
+        width: 90%;
         height: auto;
+        flex-direction: column; /* Alinha os elementos verticalmente */
+    }
+
+    .form {
+        width: 100%;
+        padding: 2rem; /* Ajuste no padding para encaixar melhor */
     }
 
     .input-group {
         flex-direction: column;
+        flex-wrap: nowrap;
+        overflow-y: scroll; /* Mantém a rolagem vertical */
+        max-height: 10rem;
+        padding-right: 0;
+    }
+
+    .cadastro-btn {
+        width: 40%; /* Aumenta a largura do botão */
+        padding: 0.8rem; /* Aumenta o padding interno para um botão mais alto */
+    }
+
+    .input-box {
+        width: 100%; /* Ajusta os campos para ocupar toda a largura */
+        margin-bottom: 1rem; /* Espaçamento entre os campos */
     }
 }

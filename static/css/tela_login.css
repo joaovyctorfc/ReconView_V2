@@ -22,13 +22,6 @@ body {
     display: flex;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, .212)
 }
-#message-container {
-    min-height: 20px; /* Mantém o espaço reservado para a mensagem */
-    line-height: 20px; /* Garante alinhamento vertical */
-    display: flex; /* Flexbox para alinhar o conteúdo */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-}
 
 .imagem  {
     width: 50%;
@@ -157,32 +150,63 @@ body {
     color: white;
 }
 
-@media screen and (max-width: 1330px){
-    .form-image{
-        display: none;
+/* Estilos para telas menores */
+@media screen and (max-width: 1330px) {
+    .imagem {
+        display: none; /* Remove a imagem para telas menores */
     }
 
-    .container{
+    .container {
         width: 50%;
     }
 
-    .form{
+    .form {
         width: 100%;
     }
 }
 
 @media screen and (max-width: 1064px) {
-    .container{
+    .container {
         width: 90%;
         height: auto;
+        flex-direction: column; /* Adicionado para empilhar os elementos verticalmente */
     }
-    .input-group{
+
+    .form {
+        padding: 2rem; /* Reduzir o padding para evitar rolagem */
+        width: 100%; /* Garantir que o form ocupe toda a largura */
+    }
+
+    .form-header h1 {
+        margin-top: 3rem; /* Adiciona uma margem superior para abaixar o texto */
+    }
+
+    .input-group {
         flex-direction: column;
-        overflow: scroll;
         flex-wrap: nowrap;
-        max-height: 10rem;
-        padding-right: 5rem;
+        padding-right: 0; /* Remover padding extra */
+        max-height: none; /* Permitir que os campos se ajustem automaticamente */
+        overflow: visible; /* Garantir que não haja rolagem */
     }
+
+    .input-box {
+        width: 100%; /* Garantir que os campos de input preencham a largura */
+        margin-bottom: 1rem; /* Espaçamento entre os campos para melhor visualização */
+    }
+}
+
+/* Outras regras gerais devem vir antes das media queries */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.8rem;
+    width: 100%; /* Isso deve ser redefinido na media query, se necessário */
 }
 
 .input-group {

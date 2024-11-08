@@ -1,11 +1,11 @@
-/* Adicione o estilo das cores aqui */
+/* Estilo das cores */
 body {
     background-color: #E8EAED;
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    height: 100vh; /* Garante que a altura do body ocupe toda a viewport */
-    margin: 0; /* Remove as margens padrão */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 /* Centralizar o texto "Login" e abaixar */
@@ -15,13 +15,13 @@ h1 {
 
 /* Alterar a cor do link para uma tonalidade mais clara */
 a {
-    color: #4d7dab; /* Cor mais clara do que o azul padrão */
+    color: #4d7dab;
     font-size: 14px;
 }
 
 /* Ou, se desejar aplicar a uma classe específica */
 .link-clara {
-    color: #a0bad3; /* Cor mais clara para links com a classe "link-clara" */
+    color: #a0bad3;
     position: relative;
     top: 10px;
 }
@@ -43,13 +43,13 @@ a {
 
 .form_frente {
     text-align: center;
-    padding: 20px; /* Ajuste o preenchimento conforme necessário */
+    padding: 20px;
     box-shadow: 0 0 10px rgba(2, 0, 0, 0.2);
     color: black;
     background-color: #FAFAFA;
     border: none;
     height: 400px;
-    width: 30%; /* Ajuste a largura desejada */
+    width: 30%;
     border-radius: 18px;
 }
 
@@ -57,13 +57,13 @@ a {
 .login-header {
     text-align: center;
     color: black;
-    margin-top: 20px; /* Ajuste conforme necessário */
+    margin-top: 20px;
 }
 
 .custom-width {
-    width: 50vw; /* Ajuste a largura conforme necessário com unidade vw (viewport width) */
-    margin-left: 50%; /* Move metade para a esquerda para centralizar */
-    transform: translateX(-50%); /* Centraliza horizontalmente */
+    width: 50vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 .btn-primary {
@@ -89,4 +89,55 @@ a {
 /* Mensagens de erro em vermelho */
 .flash_erro {
     color: red;
+}
+
+/* Versão Mobile */
+@media only screen and (max-width: 768px) {
+    .form_frente {
+        width: 80%; /* Aumenta a largura para 80% em telas menores */
+        height: auto; /* Ajusta a altura automaticamente */
+        padding: 15px; /* Reduz o padding */
+    }
+
+    .form-control {
+        width: 90%; /* Aumenta a largura dos inputs para 90% */
+        font-size: 16px; /* Aumenta o tamanho da fonte */
+    }
+
+    h1 {
+        font-size: 24px; /* Diminui o tamanho da fonte para o título */
+    }
+
+    a {
+        font-size: 12px; /* Diminui o tamanho da fonte dos links */
+    }
+
+    .custom-width {
+        width: 90vw; /* Ajuste para ocupar 90% da largura da tela */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .form_frente {
+        width: 95%; /* Aumenta ainda mais a largura para 95% */
+        padding: 10px; /* Reduz ainda mais o padding */
+    }
+
+    .form-control {
+        width: 100%; /* Aumenta a largura dos inputs para 100% */
+        font-size: 14px; /* Mantém um tamanho de fonte adequado */
+    }
+
+    h1 {
+        font-size: 20px; /* Reduz o tamanho da fonte ainda mais para o título */
+    }
+
+    a {
+        font-size: 10px; /* Diminui o tamanho da fonte dos links */
+    }
+
+    .btn-primary, .btn-secondary {
+        font-size: 14px; /* Ajuste o tamanho dos botões para telas menores */
+        padding: 10px; /* Ajuste o padding dos botões */
+    }
 }
