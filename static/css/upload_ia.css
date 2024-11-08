@@ -1,4 +1,13 @@
 /* Adicione o estilo das cores aqui */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
 body {
     background-color: #FAFAFA;
     margin: 0;
@@ -152,3 +161,324 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0a73c2;
     transform: scale(1.05);}
+
+    @media screen and (max-width: 1330px) {
+        .imagem {
+            display: none;
+        }
+    }
+    
+    @media screen and (max-width: 1064px) {
+        .container {
+            width: 90%;
+            height: auto;
+            flex-direction: column;
+        }
+    
+        .form {
+            width: 100%;
+            padding: 2rem;
+        }
+    
+        .input-group {
+            flex-direction: column;
+            flex-wrap: nowrap;
+            overflow-y: scroll;
+            max-height: 10rem;
+            padding-right: 0;
+        }
+    
+        .cadastro-btn {
+            width: 40%; /* Aumenta a largura do botão */
+            padding: 0.8rem; /* Aumenta o padding interno para um botão mais alto */
+        }
+    
+        .input-box {
+            width: 100%; /* Ajusta os campos para ocupar toda a largura */
+            margin-bottom: 1rem; /* Espaçamento entre os campos */
+        }
+    }
+    
+    @media screen and (max-width: 1020px) {
+    
+        .sair {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .card {
+            width: 90%;
+            height: auto; /* Permite que a altura se ajuste automaticamente */
+            left: 50%; /* Centraliza o elemento */
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .sobre .container {
+            flex-direction: column;
+            align-items: flex-start; /* Alinha os itens à esquerda */
+            justify-content: flex-start;
+        }
+    
+        .sobre .container .card {
+            margin-bottom: 20px; /* Adiciona espaçamento entre os containers */
+    
+        }
+    
+        .btn-abrir-menu {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sobre .container .card-border {
+            margin-bottom: 20px;
+        }
+    
+        .sobre .container .card-border:last-child {
+            margin-bottom: 0;
+        }
+    
+        footer .footer-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+    
+        footer .footer-text p {
+            font-size: 12px; 
+        }
+    
+        header .interface {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    
+        .sobre .container {
+            flex-direction: column;
+            gap: 20px;
+        }
+    
+        body.show-chatbot .chatbot {
+            bottom: 100px; /* Ajuste esse valor conforme necessário para garantir que o chatbot não sobreponha o rodapé */
+        }
+    
+        body.show-chatbot .rodapé {
+            padding-bottom: 150px; /* Adiciona espaço extra ao rodapé quando o chatbot está ativo */
+        }
+    }
+    
+    @media screen and (max-width: 1020px) {
+    
+        /* classes gerais */
+    
+        h2.titulo {
+            font-size: 27px;
+            line-height: 30px;
+        }
+    
+        .flex {
+            flex-direction: column;
+        }
+    
+        .topo-do-site .flex{
+            flex-direction: column-reverse;
+        }
+    
+    
+        /* cabeçalho */
+        .menu-desktop,
+        .btn-contato {
+            display: none;
+            margin-right: 10px;
+        }
+    
+        /* topo-do-site */
+    
+        section.topo-do-site .flex {
+            gap: 40px;
+        }
+    
+        .topo-do-site h1 {
+            font-size: 30px;
+        }
+    
+        section.topo-do-site {
+            padding: 20px 8%;
+        }
+    
+        .topo-do-site img {
+            width: 100%;
+        }
+    
+        /* objetivos */
+    
+        section.objetivo {
+            padding: 40px 8%;
+        }
+    
+        /* estilo sobre */
+    
+        .container {
+            flex-direction: column;
+        }
+    
+        section.sobre {
+            padding: 40px 8%;
+        }
+    
+        .sobre .txt-sobre h2 {
+            font-size: 35px;
+            line-height: 35px;
+            text-align: center;
+        }
+    
+        .btn-social{
+            text-align: center;
+        }
+    
+        .img-sobre img{
+            width: 100%;
+        }
+    
+        /* rodapé */
+    
+        footer .flex {
+            flex-direction: column;
+            gap: 30px;
+        }
+    
+        footer .line-footer {
+            text-align: center;
+        }
+    
+    
+        .formulario {
+            margin-top: 50px; /* Adicione a margem superior desejada */
+        }
+    
+        /* Fale Conosco */
+        .formulario input[type="text"],
+        .formulario textarea {
+            width: 80%; /* Defina a largura desejada */
+            margin: 0 auto; /* Centralize horizontalmente */
+            display: block; /* Garanta que cada campo ocupe a largura total disponível */
+        }
+    
+        .btn-abrir-menu{
+            display: block;
+        }
+    }
+    
+    .menu-mobile {
+        background-color: #FAFAFA;
+        height: 100vh; /* Garante que o menu cobre a altura total da tela */
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 99999;
+        width: 0; /* Define a largura do menu ao ser aberto */
+        display: flex;
+        flex-direction: column;
+        padding-top: 60px; /* Espaço entre o botão X e os links do menu */
+        transition: width 0.5s ease;
+        box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1); /* Sombra para destacar o menu */
+    }
+    
+    .menu-mobile.abrir-menu {
+        width: 70%; /* Define a largura do menu ao ser aberto */
+    }
+
+    
+    .overlay-menu {
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 88888;
+        display: none;
+    }
+    
+    
+    .menu-header {
+        display: flex;
+        justify-content: flex-start; /* Alinha o botão à esquerda */
+        padding: 28px;
+    }
+    
+    .menu-mobile.abrir-menu ~ .overlay-menu {
+        display: block;
+    }
+    
+    .menu-mobile ul {
+        padding: 20px 0;
+        margin: 0;
+        list-style: none;
+        text-align: right;
+        width: 100%;
+    }
+    
+    .menu-mobile ul li {
+        margin-bottom: 20px;
+    }
+    
+    .menu-mobile ul li a {
+        color: black;
+        font-size: 20px;
+        padding: 15px 20px;
+        display: block;
+        transition: background-color 0.3s, color 0.3s;
+        text-decoration: none;
+        width: 100%;
+    }
+    
+    .menu-mobile ul li a:hover, 
+    .menu-mobile ul li a.active {
+        background-color: #2093FF;
+        color: white;
+    }
+    
+    /* Botão de abrir menu */
+    .btn-abrir-menu {
+        display: none; /* Oculto por padrão em telas grandes */
+        cursor: pointer;
+        color: #2093FF;
+        font-size: 50px;
+        background: none;
+        border: none;
+    }
+    
+    .btn-fechar {
+        font-size: 35px;
+        color: #2093FF;
+        position: absolute;
+        top: 15px; /* Ajusta o botão ao topo */
+        left: 15px; /* Posiciona o botão à esquerda */
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        transition: background-color 0.3s;
+        z-index: 100000; /* Garante que o botão fique no topo */
+    }
+    
+    .btn-fechar-menu:hover {
+        background-color: #fafafa;
+    }
+    
+    @media screen and (max-width: 1020px) {
+        /* Exibir o botão de menu em telas menores */
+        .btn-abrir-menu {
+            display: block;
+        }
+    
+        /* Ocultar o menu desktop em telas menores */
+        .menu-desktop {
+            display: none;
+        }
+    }
