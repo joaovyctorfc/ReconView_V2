@@ -25,8 +25,13 @@
     <div class="interface">
         <div class="logo">
             <a href="#">
-                <img src="{% static 'img/logo.png' %}" alt="Logo" width="75px">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" width="100px">
             </a>
+        </div>
+
+        <!-- Botão para abrir o menu mobile -->
+        <div class="btn-abrir-menu">
+            <i class="bi bi-list"></i>
         </div>
 
         <nav class="menu-desktop">
@@ -43,6 +48,25 @@
         </a>
     </div>
 </header>
+
+<!-- Estrutura do menu mobile -->
+<div class="menu-mobile">
+    <div class="btn-fechar">
+        <i class="bi bi-x"></i>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{% url 'principal' %}">Início</a></li>
+            <li><a href="{% url 'clima' %}">Clima</a></li>
+            <li><a href="{% url 'uploadIA' %}">Análise de Vídeo</a></li>
+            <li><a href="{% url 'video' %}">Biblioteca</a></li>
+            <li><a href="{% url 'perfil' %}">Perfil</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Overlay para o menu mobile -->
+<div class="overlay-menu"></div>
 
 <body>
     <div class="container">
@@ -65,6 +89,28 @@
                 document.querySelector('.container').appendChild(userEmailElement);
             }
         });
+
+          // Função para abrir e fechar o menu mobile
+    const abrirMenu = document.querySelector('.btn-abrir-menu');
+    const fecharMenu = document.querySelector('.btn-fechar');
+    const menuMobile = document.querySelector('.menu-mobile');
+    const overlayMenu = document.querySelector('.overlay-menu');
+
+    abrirMenu.addEventListener('click', function() {
+        menuMobile.classList.add('abrir-menu');
+        overlayMenu.style.display = 'block';
+    });
+
+    fecharMenu.addEventListener('click', function() {
+        menuMobile.classList.remove('abrir-menu');
+        overlayMenu.style.display = 'none';
+    });
+
+    overlayMenu.addEventListener('click', function() {
+        menuMobile.classList.remove('abrir-menu');
+        overlayMenu.style.display = 'none';
+    });
+        
     </script>
 </body>
 </html>
