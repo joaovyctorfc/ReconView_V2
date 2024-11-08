@@ -1,6 +1,5 @@
+.firebase.json
 
-venv/
+venv/  
 
 .gitignore
-=======
-#.\venv\Scripts\activate       #ativar ambiente windows
