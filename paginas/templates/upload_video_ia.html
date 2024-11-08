@@ -50,10 +50,10 @@
         <div class="card">
             <div class="card-body">
                 <h2>Upload de Vídeo</h2>
-                <form id="uploadForm" action="{% url 'uploadIA' %}" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+                <form action="{% url 'uploadIA' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <input type="file" name="video" accept="video/*" class="custom-file-input">
-                    <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+                    <input type="file" name="video" required>
+                    <button type="submit">Upload Video</button>
                 </form>
                 <div id="loader" style="display: none;" class="loader"></div>
                 <div id="userEmailDisplay" style="margin-top: 20px;"></div>

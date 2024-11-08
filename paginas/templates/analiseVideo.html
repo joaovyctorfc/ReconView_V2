@@ -62,7 +62,6 @@
             const userEmail = sessionStorage.getItem('userEmail');
             if (userEmail) {
                 const userEmailElement = document.createElement('p');
-                userEmailElement.textContent = 'Bem-vindo ' + userEmail;
                 document.querySelector('.container').appendChild(userEmailElement);
             }
         });
