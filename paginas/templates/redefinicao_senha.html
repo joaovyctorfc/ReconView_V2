@@ -17,12 +17,13 @@
         </div>
         
         {% if messages %}
-            <div class="alert alert-danger">
-                {% for message in messages %}
+            {% for message in messages %}
+                <div class="alert {% if 'sucesso' in message.tags %}alert-success{% else %}alert-danger{% endif %}">
                     {{ message }}
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         {% endif %}
+
         
         <form id="update-password-form" action="{% url 'senha' %}" method="post">  <!-- URL correta -->
             {% csrf_token %}

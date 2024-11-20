@@ -180,7 +180,8 @@ class AtualizarSenha(TemplateView):
             messages.error(request, 'Ocorreu um erro ao atualizar a senha.')
 
         return self.render_to_response({'codigo_enviado': True, 'destinatario': destinatario})  # Renderiza o template após a tentativa de atualização
-
+    
+    
 class UploadIA(TemplateView):
     template_name = 'upload_video_ia.html'
 
@@ -210,31 +211,82 @@ class UploadIA(TemplateView):
         # Renderiza o template com o caminho do vídeo resultante
         return render(request, 'analiseVideo.html', {'result_video_path': result_video_path})
 
-    def analise_video(self, video_path):
-        # Carrega o modelo YOLO
-        model = YOLO("yolov8n.pt")
+    class UploadIA(TemplateView):
+     template_name = 'upload_video_ia.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        # Verifique se um arquivo de vídeo foi enviado
+        if 'video' not in request.FILES:
+            messages.error(request, "Por favor, envie um arquivo de vídeo.")
+            return redirect('uploadIA')
+
+        # Verifique se um modelo foi selecionado
+        model_name = request.POST.get('model')
+        if not model_name:
+            messages.error(request, "Por favor, selecione um modelo para análise.")
+            return redirect('uploadIA')
+
+        # Salvar o arquivo enviado
+        file = request.FILES['video']
+        fs = FileSystemStorage()
+        filename = fs.save(file.name, file)
+        file_path = os.path.join(settings.MEDIA_ROOT, filename)
+
+        try:
+            # Processa o vídeo com a análise de IA
+            result_video_path = self.analise_video(file_path, model_name)
+            messages.success(request, "Análise de vídeo concluída com sucesso.")
+        except Exception as e:
+            messages.error(request, f"Ocorreu um erro durante a análise do vídeo: {e}")
+            return redirect('uploadIA')
+
+        # Renderiza o template com o caminho do vídeo resultante
+        return render(request, 'analiseVideo.html', {'result_video_path': result_video_path})
+
+    def analise_video(self, video_path, model_name):
+        model_path = os.path.join(settings.BASE_DIR, 'models', model_name)  # Assumindo que o modelo esteja em uma pasta 'models'
+        
+        # Verifique se o arquivo do modelo existe
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(f"O modelo '{model_name}' não foi encontrado.")
+        
+        # Carrega o modelo YOLO com base na seleção
+        model = YOLO(model_path)
 
         # Configurações do vídeo de entrada
         cap = cv2.VideoCapture(video_path)
+        if not cap.isOpened():
+            raise Exception("Não foi possível abrir o vídeo.")
+        
         output_path = os.path.join(settings.MEDIA_ROOT, 'result.mp4')
         fps = cap.get(cv2.CAP_PROP_FPS)
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Se necessário, troque o codec para 'XVID'
         out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
         
         while cap.isOpened():
             success, frame = cap.read()
             if not success:
                 break
+
+            # Processa o quadro do vídeo com o modelo YOLO
             results = model(frame)
+            if results is None or len(results) == 0:
+                print("Nenhum resultado encontrado no quadro.")
+                continue
+
+            # Anota o quadro com as detecções do modelo
             annotated_frame = results[0].plot()
             out.write(annotated_frame)
 
         # Libera os recursos
         cap.release()
         out.release()
-        
+
         return output_path
 
 def download(request):

@@ -48,7 +48,7 @@ a {
     color: black;
     background-color: #FAFAFA;
     border: none;
-    height: 400px;
+    height: auto;
     width: 30%; /* Ajuste a largura desejada */
     border-radius: 18px;
 }
