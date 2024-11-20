@@ -96,29 +96,12 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para o conteúdo principal */
-#content {
-    width: 100%; /* Certifica-se de que o conteúdo ocupa toda a largura disponível */
-    max-width: 1200px; /* Limita a largura máxima */
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column; /* Organiza os itens em uma coluna */
-    align-items: center; /* Centraliza os itens verticalmente */
-    justify-content: center; /* Centraliza o conteúdo */
-    min-height: 80vh;
-    background: linear-gradient(#FAFAFA, #FAFAFA);
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Estilos para o resultado da análise */
-#container {
-    background-color: #FAFAFA;
-    padding: 16px;
-    width: 95%;
-    max-width: 450px;
-    margin: 0 auto; /* Centraliza o contêiner */
-    text-align: center; /* Centraliza o texto */
+.container {
+    margin-top: 250px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 /* Estilo para os botões */
