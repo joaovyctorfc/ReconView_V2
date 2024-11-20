@@ -45,15 +45,24 @@
                     Enviar
                 </button>
                 <br>
-                <div id="error-message" style="color: red;"></div>
+                <div id="error-message" style="color: red; margin-top: 10px;"></div>
             </div>
+        </div>
+
+        <!-- Spinner de carregamento -->
+        <div id="loading-spinner" class="text-center" style="display: none; margin-top: 20px;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+            <p>Aguarde, o upload está em andamento...</p>
         </div>
     </form>
 
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
-    <script src="https://ajax.googleapis.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <script>
+        // Configuração do Firebase
         var firebaseConfig = {
             apiKey: "AIzaSyCDt3C8vJSaPByyuK_Ic0g_weklhLPIgrU",
             authDomain: "reconview-1410a.firebaseapp.com",
@@ -64,55 +73,62 @@
             appId: "1:659583199869:web:32d1ce0d44e7b94c879f14",
         };
         firebase.initializeApp(firebaseConfig);
+
         var messagesRef = firebase.database().ref('Checking');
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const userEmail = sessionStorage.getItem('userEmail');
-            if (userEmail) {
-                console.log('Bem-vindo ' + userEmail);
-                const userEmailElement = document.createElement('p');
-                document.querySelector('header .interface').appendChild(userEmailElement);
-            }
-        });
-
         function uploadVideo() {
-            const userEmail = sessionStorage.getItem('userEmail');s
+            // Obtém o e-mail do usuário
+            const userEmail = sessionStorage.getItem('userEmail');
             if (!userEmail) {
                 document.getElementById('error-message').innerText = 'E-mail do usuário não encontrado.';
                 return;
             }
 
-            var storage = firebase.storage();
+            // Verifica se o arquivo foi selecionado
             var fileInput = document.getElementById("files");
             var file = fileInput.files[0];
-
             if (!file) {
                 document.getElementById('error-message').innerText = 'Selecione um arquivo.';
                 return;
             }
 
+            // Verifica a extensão do arquivo
             var fileExt = file.name.split('.').pop().toLowerCase();
             var allowedExts = ['mp4', 'webm', 'avi', 'flv'];
-
-            if (allowedExts.indexOf(fileExt) === -1) {
-                document.getElementById('error-message').innerText = 'Selecione um arquivo com extensão .mp4, .webm, .avi ou .flv.';
+            if (!allowedExts.includes(fileExt)) {
+                document.getElementById('error-message').innerText = 'Selecione um arquivo com extensão válida (.mp4, .webm, .avi ou .flv).';
                 return;
             }
 
+            // Limpa mensagens de erro e exibe o spinner
             document.getElementById('error-message').innerText = '';
+            document.getElementById('loading-spinner').style.display = 'block';
+
+            // Referência ao Firebase Storage
+            var storage = firebase.storage();
             var storageRef = storage.ref();
-            var type = 'your_type_here'; // Coloque o tipo que você deseja
+            var type = 'uploads/videos'; // Caminho no Firebase Storage
             var thisRef = storageRef.child(type).child(file.name);
 
-            thisRef.put(file).then(function(snapshot) {
-                return thisRef.getDownloadURL();
-            }).then(function(downloadURL) {
-                document.getElementById("url").value = downloadURL;
-                alert('Upload bem-sucedido');
-                saveMessage(downloadURL, userEmail);
-            }).catch(function(error) {
-                console.error('Erro de upload:', error);
-            });
+            // Inicia o upload
+            thisRef.put(file)
+                .then(function(snapshot) {
+                    return thisRef.getDownloadURL();
+                })
+                .then(function(downloadURL) {
+                    // Salva o URL no campo oculto
+                    document.getElementById("url").value = downloadURL;
+                    alert('Upload bem-sucedido!');
+                    saveMessage(downloadURL, userEmail);
+                })
+                .catch(function(error) {
+                    console.error('Erro de upload:', error);
+                    document.getElementById('error-message').innerText = 'Erro no upload. Tente novamente.';
+                })
+                .finally(function() {
+                    // Oculta o spinner
+                    document.getElementById('loading-spinner').style.display = 'none';
+                });
         }
 
         function saveMessage(url, email) {

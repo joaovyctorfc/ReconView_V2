@@ -45,33 +45,29 @@
     </div>
 </header>
 
-<body>
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <h2>Análise de Vídeo</h2>
-                <form action="{% url 'uploadIA' %}" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
-                    {% csrf_token %}
-                    <div>
-                        <label for="model">Escolha o Modelo:</label>
-                        <select name="model" id="model" required>
-                            <option value="yolov8n.pt">YOLOv8n</option>
-                            <option value="yolov8s.pt">YOLOv8s</option>
-                            <option value="yolov8m.pt">YOLOv8m</option>
-                            <option value="yolov8l.pt">YOLOv8l</option>
-                            <!-- Adicione mais modelos conforme necessário -->
-                        </select>
-                    </div>
-                    <input type="file" name="video" required>
-                    <button type="submit">Enviar</button>
-                </form>
-                <div id="loader" style="display: none;" class="loader"></div>
-                
-                <div id="loader" style="display: none;" class="loader"></div>
-                <div id="userEmailDisplay" style="margin-top: 20px;"></div>
-            </div>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h2>Análise de Vídeo</h2>
+            <form action="{% url 'uploadIA' %}" method="post" enctype="multipart/form-data" id="uploadForm" onsubmit="showLoader()">
+                {% csrf_token %}
+                <div>
+                    <label for="model">Escolha o Modelo:</label>
+                    <select name="model" id="model" required>
+                        <option value="yolov8n.pt">Genérica</option>
+                        <option value="yolov8m.pt">Avançada</option>
+                        <option value="gado.pt">Gado</option>
+                        <!-- Adicione mais opções conforme necessário -->
+                    </select>
+                </div>
+                <input type="file" name="video" required>
+                <button type="submit">Enviar</button>
+            </form>
+            <div id="loader" style="display: none;" class="loader"></div>
+            <div id="userEmailDisplay" style="margin-top: 20px;"></div>
         </div>
     </div>
+</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

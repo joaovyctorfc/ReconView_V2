@@ -302,3 +302,4 @@ def download(request):
     else:
         messages.error(request, "O arquivo de vídeo não foi encontrado.")
         return redirect('uploadIA')
+    
