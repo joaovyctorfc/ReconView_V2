@@ -8,14 +8,14 @@ body {
     align-items: center; /* Centraliza o conteúdo horizontalmente */
 }
 
+/* Header */
 header {
-    background-color: #FAFAFA;
-    padding: 10px 4%;
-    position: sticky;
+    background-color: #E8EAED;
+    padding: 20px 4%;
+    position: fixed;
     width: 100%;
     z-index: 1000;
     top: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header .interface {
@@ -24,7 +24,6 @@ header .interface {
     justify-content: space-between;
     max-width: 1250px;
     margin: 0 auto;
-    width: 100%; /* Certifica que a largura seja 100% do contêiner pai */
 }
 
 header a {
@@ -51,6 +50,15 @@ header nav ul li {
     padding: 0 40px;
 }
 
+header {
+    background-color: #FAFAFA;
+    padding: 10px 4%;
+    position: sticky;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 #content {
     width: 100%; /* Certifica-se de que o conteúdo ocupa toda a largura disponível */
     max-width: 1200px; /* Define um limite máximo para a largura do conteúdo */

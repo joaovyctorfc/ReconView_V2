@@ -1,21 +1,23 @@
-/* Adicione o estilo das cores aqui */
+/* Configuração básica */
 body {
-    background-color: #FAFAFA;
+    background-color: #FAFAFA; /* Cor de fundo suave */
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    font-family: 'Poppins', sans-serif; /* Fonte principal */
 }
 
+/* Header */
 header {
-    background-color: #FAFAFA;
-    padding: 10px 4%;
-    position: sticky;
+    background-color: #FAFAFA; /* Cor de fundo do header */
+    padding: 20px 4%;
+    position: fixed;
     width: 100%;
     z-index: 1000;
     top: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 header .interface {
@@ -24,26 +26,18 @@ header .interface {
     justify-content: space-between;
     max-width: 1250px;
     margin: 0 auto;
-    width: 100%; /* Certifica que a largura seja 100% do contêiner pai */
+    width: 100%;
 }
 
-header a {
-    color: #7d7d7d;
-    text-decoration: none;
-    display: inline-block;
-    transition: .2s;
-    font-size: 22px;
-}
-
-header a:hover {
-    color: black;
-    transform: scale(1.05);
+header .logo img {
+    width: 100px;
 }
 
 header nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
 header nav ul li {
@@ -51,84 +45,130 @@ header nav ul li {
     padding: 0 40px;
 }
 
-.card {
-    width: 50%;
-    height: 150px;
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-        left: 58%;
-    transform: translate(-50%, -50%);
-    background-color: #FAFAFA;
-    color: black; /* Define a cor do texto como branco */
-    border: none; /* Remove a borda */
+header a {
+    color: #7d7d7d;
+    text-decoration: none;
+    font-size: 22px;
+    transition: 0.2s;
 }
 
-/* Estilo personalizado para o botão "Procurar" */
-.custom-file-input::file-selector-button {
-    background-color: #6c757d;
-        color: #fff;
-    border-radius: 10px; /* Borda arredondada para o botão */
-    padding: 5px 10px; /* Espaçamento interno para o botão */
-    margin-top: 10px; /* Espaçamento superior do botão */
-    border: none; /* Remove a borda do botão */
-    cursor: pointer; /* Mostrar o cursor de mão ao passar o mouse sobre o botão */
-    }
-    a {
-    color: #4d7dab; /* Cor mais clara do que o azul padrão */
-    }
-    /* Efeito de hover para o botão "Procurar" */
-    .custom-file-input::file-selector-button:hover {
-    background-color: #4d4f51; /* Altera a cor de fundo quando hover */
-                border: 2px solid #5f656a; 
-    }
-    /* Alterar a cor do link para uma tonalidade mais clara */
-a {
-    color: #4d7dab; /* Cor mais clara do que o azul padrão */
-    }
-    
-    /* Ou, se desejar aplicar a uma classe específica */
-    .link-clara {
-    color: #4d7dab; /* Cor mais clara para links com a classe "link-clara" */
-    }
+header a:hover {
+    color: black;
+    transform: scale(1.05);
+}
 
-
-    header > .interface {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .btn-primary {
-        color: white;
-        width: 20%;
-        border: 2px solid #6289b4; 
-        background-color: #004182;
-        padding: 0.62rem;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out, transform 0.2s;
-        margin-bottom: 0.2rem;
-    }
-    .btn-primary:hover {
-        background-color: #007bff; }
-    
-        .center-input {
-            display: flex;
-            justify-content: center;
-            }
-                    
+/* Botão "Sair" */
 .sair {
-    background-color: gray !important;
+    background-color: gray;
     color: white;
     border: none;
-    margin-left: 10px;
     border-radius: 30px;
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .sair:hover {
-    background-color: red !important; /* Altera a cor para vermelho quando passa o mouse */
+    background-color: red; /* Vermelho ao passar o mouse */
+}
+
+/* Card principal */
+.card {
+    width: 50%;
+    padding: 20px; /* Espaçamento interno */
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff; /* Fundo branco */
+    color: #333; /* Texto cinza escuro */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    border-radius: 10px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza texto dentro do card */
+}
+
+.card h2 {
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+    font-size: 24px; /* Tamanho maior para destaque */
+    font-weight: 600; /* Negrito para o título */
+    color: #0C8CE9; /* Azul do tema */
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espaço entre os elementos */
+}
+
+input[type="file"] {
+    font-size: 16px; /* Tamanho do texto do input */
+    padding: 5px; /* Ajusta o espaçamento interno */
+    border: 2px solid #ddd; /* Borda leve */
+    border-radius: 5px; /* Bordas arredondadas */
+    width: 70%; /* Ajusta o tamanho do input */
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+input[type="file"]:hover {
+    border-color: #0C8CE9; /* Destaque ao passar o mouse */
+}
+
+/* Botão de envio */
+button[type="button"] {
+    color: white;
+    width: auto; /* Ajusta o tamanho automático */
+    padding: 10px 20px; /* Ajusta o espaçamento interno */
+    font-size: 16px; /* Aumenta o tamanho da fonte */
+    border: 2px solid #0C8CE9;
+    background-color: #0C8CE9;
+    border-radius: 30px; /* Bordas arredondadas */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+button[type="button"]:hover {
+    background-color: #007bff; /* Azul mais escuro no hover */
+    transform: scale(1.05); /* Animação de leve aumento */
+}
+
+/* Loader (oculto por padrão) */
+.loader {
+    border: 6px solid #f3f3f3; /* Fundo claro */
+    border-top: 6px solid #0C8CE9; /* Cor do tema */
+    border-radius: 50%; /* Forma de círculo */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite; /* Animação */
+    margin: 20px auto; /* Centraliza */
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Exibição do email */
+#userEmailDisplay {
+    font-size: 16px; /* Ajusta o tamanho da fonte */
+    color: #666; /* Um tom de cinza suave */
+    margin-top: 10px; /* Espaçamento superior */
+    font-style: italic; /* Adiciona estilo itálico */
+}
+
+/* Links gerais */
+a {
+    color: #4d7dab; /* Azul claro */
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #0C8CE9; /* Azul mais escuro ao passar o mouse */
 }

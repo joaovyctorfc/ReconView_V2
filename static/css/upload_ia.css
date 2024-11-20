@@ -1,4 +1,4 @@
-/* Adicione o estilo das cores aqui */
+/* Estilos gerais */
 body {
     background-color: #FAFAFA;
     margin: 0;
@@ -9,13 +9,12 @@ body {
 }
 
 header {
-    background-color: #FAFAFA;
-    padding: 10px 4%;
-    position: sticky;
+    background-color: #E8EAED;
+    padding: 20px 4%;
+    position: fixed;
     width: 100%;
     z-index: 1000;
     top: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header .interface {
@@ -24,7 +23,6 @@ header .interface {
     justify-content: space-between;
     max-width: 1250px;
     margin: 0 auto;
-    width: 100%; /* Certifica que a largura seja 100% do contêiner pai */
 }
 
 header a {
@@ -51,66 +49,46 @@ header nav ul li {
     padding: 0 40px;
 }
 
+header {
+    background-color: #FAFAFA;
+    padding: 10px 4%;
+    position: sticky;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para o conteúdo */
 .card {
     width: 50%;
     height: 150px;
     margin: 0 auto;
     position: absolute;
     top: 50%;
-        left: 58%;
+    left: 58%;
     transform: translate(-50%, -50%);
     background-color: #FAFAFA;
-    color: black; /* Define a cor do texto como branco */
-    border: none; /* Remove a borda */
+    color: black;
+    border: none;
 }
 
-/* Estilo personalizado para o botão "Procurar" */
 .custom-file-input::file-selector-button {
     background-color: #6c757d;
-        color: #fff;
-    border-radius: 10px; /* Borda arredondada para o botão */
-    padding: 5px 10px; /* Espaçamento interno para o botão */
-    margin-top: 10px; /* Espaçamento superior do botão */
-    border: none; /* Remove a borda do botão */
-    cursor: pointer; /* Mostrar o cursor de mão ao passar o mouse sobre o botão */
-    }
-    a {
-    color: #4d7dab; /* Cor mais clara do que o azul padrão */
-    }
-    /* Efeito de hover para o botão "Procurar" */
-    .custom-file-input::file-selector-button:hover {
-    background-color: #4d4f51; /* Altera a cor de fundo quando hover */
-                border: 2px solid #5f656a; 
-    }
-    /* Alterar a cor do link para uma tonalidade mais clara */
-a {
-    color: #4d7dab; /* Cor mais clara do que o azul padrão */
-    }
-    
-    /* Ou, se desejar aplicar a uma classe específica */
-    .link-clara {
-    color: #4d7dab; /* Cor mais clara para links com a classe "link-clara" */
-    }
-
-
-    header > .interface {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .btn-primary {
-        background-color: #004182;
     color: #fff;
-    border: 2px solid #6289b4; 
-    }
-    .btn-primary:hover {
-        background-color: #007bff; }
-    
-        .center-input {
-            display: flex;
-            justify-content: center;
-            }
-                    
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.custom-file-input::file-selector-button:hover {
+    background-color: #4d4f51;
+    border: 2px solid #5f656a;
+}
+
+/* Estilos para os botões */
 .sair {
     background-color: gray !important;
     color: white;
@@ -124,13 +102,13 @@ a {
 }
 
 .sair:hover {
-    background-color: red !important; /* Altera a cor para vermelho quando passa o mouse */
+    background-color: red !important;
 }
-/* Estilo para o botão "Enviar" */
+
 button[type="submit"] {
     color: white;
     width: 20%;
-    border: 2px solid #6289b4; 
+    border: 2px solid #6289b4;
     background-color: #004182;
     padding: 0.62rem;
     border-radius: 50px;
@@ -138,17 +116,59 @@ button[type="submit"] {
     transition: background-color 0.3s ease-in-out, transform 0.2s;
     margin-bottom: 0.2rem;
 }
-/* Estilo personalizado para o botão "Procurar" */
-.custom-file-input::file-selector-button {
-    background-color: #6c757d;
-        color: #fff;
-    border-radius: 10px; /* Borda arredondada para o botão */
-    padding: 5px 10px; /* Espaçamento interno para o botão */
-    margin-top: 10px; /* Espaçamento superior do botão */
-    border: none; /* Remove a borda do botão */
-    cursor: pointer; /* Mostrar o cursor de mão ao passar o mouse sobre o botão */
-    }
 
 button[type="submit"]:hover {
     background-color: #0a73c2;
-    transform: scale(1.05);}
+    transform: scale(1.05);
+}
+
+/* Estilos responsivos */
+@media only screen and (max-width: 768px) {
+    .form_frente {
+        width: 80%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .form-control {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    a {
+        font-size: 12px;
+    }
+
+    .custom-width {
+        width: 90vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .form_frente {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .form-control {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    a {
+        font-size: 10px;
+    }
+
+    .btn-primary, .btn-secondary {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

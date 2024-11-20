@@ -1,3 +1,4 @@
+/* Estilos para o botão sair */
 .sair {
     background-color: gray !important;
     color: white;
@@ -13,11 +14,20 @@
     background-color: red !important; /* Altera a cor para vermelho quando passa o mouse */
 }
 
+/* Body */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin-top: 50px;
+    background-color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    padding: 0;
+    margin: 0;
 }
+
+/* Loader */
 .loader {
     margin-top: 30px;
     border: 8px solid #f3f3f3;
@@ -34,6 +44,7 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+/* Header */
 header {
     background-color: #E8EAED;
     padding: 20px 4%;
@@ -75,33 +86,6 @@ header nav ul li {
     padding: 0 40px;
 }
 
-.btn-contato button {
-    padding: 15px 40px;
-    font-size: 18px;
-    font-weight: 600;
-    background-color: black;
-    color: white;
-    border: 0;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: .2s;
-}
-
-.btn-contato button:hover {
-    box-shadow: 0px 0px 8px #d6dde2;
-    transform: scale(1.05);
-}
-
-/* Adicione o estilo das cores aqui */
-body {
-    background-color: #FAFAFA;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
-}
-
 header {
     background-color: #FAFAFA;
     padding: 10px 4%;
@@ -112,59 +96,32 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-header .interface {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1250px;
-    margin: 0 auto;
-    width: 100%; /* Certifica que a largura seja 100% do contêiner pai */
-}
-
-header a {
-    color: #7d7d7d;
-    text-decoration: none;
-    display: inline-block;
-    transition: .2s;
-    font-size: 22px;
-}
-
-header a:hover {
-    color: black;
-    transform: scale(1.05);
-}
-
-header nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-header nav ul li {
-    display: inline-block;
-    padding: 0 40px;
-}
-
+/* Estilos para o conteúdo principal */
 #content {
     width: 100%; /* Certifica-se de que o conteúdo ocupa toda a largura disponível */
-    max-width: 1200px; /* Define um limite máximo para a largura do conteúdo */
-    margin-top: 20px; /* Aumento do espaçamento superior */
+    max-width: 1200px; /* Limita a largura máxima */
+    margin-top: 20px;
     display: flex;
+    flex-direction: column; /* Organiza os itens em uma coluna */
     align-items: center; /* Centraliza os itens verticalmente */
-    justify-content: space-between; /* Distribui os itens com espaço igual entre eles */
+    justify-content: center; /* Centraliza o conteúdo */
     min-height: 80vh;
     background: linear-gradient(#FAFAFA, #FAFAFA);
-    padding: 0 20px; /* Adiciona um padding para garantir que o conteúdo não fique colado nas bordas */
-    box-sizing: border-box; /* Inclui padding e border no tamanho total do elemento */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* Estilos para o resultado da análise */
 #container {
     background-color: #FAFAFA;
-    padding: 16px; /* Aumento do preenchimento */
-    width: 95%; /* Aumento da largura */
-    max-width: 450px; /* Ajuste da largura máxima */
-    margin: 0 auto; /* Centralizando o contêiner na página */
+    padding: 16px;
+    width: 95%;
+    max-width: 450px;
+    margin: 0 auto; /* Centraliza o contêiner */
+    text-align: center; /* Centraliza o texto */
 }
+
+/* Estilo para os botões */
 button[type="submit"] {
     color: white;
     width: 30%;
