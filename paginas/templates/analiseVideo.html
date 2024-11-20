@@ -53,7 +53,7 @@
         <form action="{% url 'download' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="result_video_path" value="{{ result_video_path }}">
-            <button type="submit" class="btn btn-primary">Baixar Vídeo Analisado</button>
+            <button type="submit" class="btn btn-primary">Baixar</button>
         </form>
     </div>
 
